@@ -6,7 +6,7 @@ Evaluate trained models on test sets
 import argparse
 import numpy as np
 import json
-from keras.datasets import mnist, fashion_mnist
+from tensorflow.keras.datasets import mnist, fashion_mnist
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import matplotlib.pyplot as plt
 
@@ -26,20 +26,20 @@ def load_test_data(dataset_name):
     return X_test.reshape(-1, 784) / 255.0, y_test
 def load_model(weights_path, config_path=None):
 
+    # Default architecture for dummy tests
+    layer_sizes = [784, 128, 10]
+    activation = "relu"
+    weight_init = "xavier"
+    loss = "cross_entropy"
+
     if config_path is not None:
         with open(config_path, "r") as f:
             config = json.load(f)
 
-        layer_sizes = config["layer_sizes"]
-        activation = config["activation"]
-        weight_init = config["weight_init"]
-        loss = config["loss"]
-
-    else:
-        layer_sizes = [784, 128, 10]
-        activation = "relu"
-        weight_init = "xavier"
-        loss = "cross_entropy"
+        layer_sizes = config.get("layer_sizes", layer_sizes)
+        activation = config.get("activation", activation)
+        weight_init = config.get("weight_init", weight_init)
+        loss = config.get("loss", loss)
 
     model = NeuralNetwork(
         layer_sizes,
@@ -49,6 +49,10 @@ def load_model(weights_path, config_path=None):
     )
 
     weights = np.load(weights_path, allow_pickle=True)
+
+# handle object array saved with np.save
+    if isinstance(weights, np.ndarray) and weights.shape == ():
+        weights = weights.item()
 
     for i, layer in enumerate(model.layers):
 
