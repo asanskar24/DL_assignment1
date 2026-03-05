@@ -4,6 +4,7 @@ Entry point for training neural networks with command-line arguments
 """
 
 import argparse
+from pyexpat import model
 import numpy as np
 import json
 import wandb
@@ -78,8 +79,11 @@ def train(args):
             loss  = model.compute_loss(probs, yb)
             total_loss += loss
             num_batches += 1
+            logits = model.forward(Xb)
+            loss = model.compute_loss(logits, yb)
 
-            model.backward(yb)
+            model.backward(logits, yb)
+           
             optimizer.update(model.layers)
 
         # Compute validation metrics

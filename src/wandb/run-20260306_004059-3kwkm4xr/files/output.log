@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\train.py", line 144, in <module>
+    train(args)
+    ~~~~~^^^^^^
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\train.py", line 78, in train
+    loss  = model.compute_loss(probs, yb)
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\ann\neural_network.py", line 59, in compute_loss
+    probs = self.softmax(logits)
+                         ^^^^^^
+NameError: name 'logits' is not defined. Did you mean: 'self.logits'?

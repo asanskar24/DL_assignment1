@@ -1,25 +1,22 @@
-"""
-Main Neural Network Model class
-Handles forward and backward propagation loops
-"""
-
 import numpy as np
+import argparse
 from .neural_layer import Layer
 from .objective_functions import Loss
-import argparse
+
 
 class NeuralNetwork:
+    """
+    Multi-layer perceptron neural network.
+    """
 
     def __init__(self, layer_sizes, activation='relu', weight_init='xavier', loss='cross_entropy'):
 
-        # If Namespace is passed instead of layer_sizes
+        # Handle argparse Namespace
         if isinstance(layer_sizes, argparse.Namespace):
-
             args = layer_sizes
-
-            # Safely extract values
             num_layers = getattr(args, "num_layers", 1)
             hidden_size = getattr(args, "hidden_size", 128)
+
             activation = getattr(args, "activation", activation)
             weight_init = getattr(args, "weight_init", weight_init)
             loss = getattr(args, "loss", loss)
@@ -29,68 +26,95 @@ class NeuralNetwork:
         self.loss_type = loss
         self.layers = []
 
+        # Build layers
         for i in range(len(layer_sizes) - 1):
-            act = activation if i < len(layer_sizes) - 2 else 'linear'
-            self.layers.append(Layer(layer_sizes[i], layer_sizes[i + 1], act, weight_init))
+            act = activation if i < len(layer_sizes) - 2 else "linear"
+            self.layers.append(
+                Layer(layer_sizes[i], layer_sizes[i + 1], act, weight_init)
+            )
 
-        self.probs = None
+        self.logits = None
+
+    # -------------------------
+    # Utility functions
+    # -------------------------
 
     def softmax(self, Z):
         """Numerically stable softmax."""
-        Z_shifted = Z - np.max(Z, axis=1, keepdims=True)
-        exp_Z = np.exp(Z_shifted)
+        Z_shift = Z - np.max(Z, axis=1, keepdims=True)
+        exp_Z = np.exp(Z_shift)
         return exp_Z / np.sum(exp_Z, axis=1, keepdims=True)
+
+    # -------------------------
+    # Forward Pass
+    # -------------------------
 
     def forward(self, X):
         """
-        Full forward pass through all layers + softmax.
-        Args:
-            X: input of shape (batch_size, input_features)
-        Returns:
-            softmax probabilities of shape (batch_size, num_classes)
+        Forward pass through the network.
+        Returns logits (no softmax applied).
         """
         out = X
+
         for layer in self.layers:
             out = layer.forward(out)
-        self.probs = self.softmax(out)
-        return self.probs
 
-    def compute_loss(self, probs, y_onehot):
-        """Compute scalar loss."""
+        self.logits = out
+        return out
+
+    # -------------------------
+    # Loss
+    # -------------------------
+
+    def compute_loss(self, logits, y_onehot):
+        probs = self.softmax(logits)
         return Loss.compute(probs, y_onehot, self.loss_type)
 
-    def backward(self, y_onehot):
-        """
-        Backpropagation through all layers.
-        Args:
-            y_onehot: one-hot encoded labels, shape (batch_size, num_classes)
-        """
-        # Initial gradient at output (cross-entropy + softmax combined gradient)
-        delta = (self.probs - y_onehot) / y_onehot.shape[0]
+    # -------------------------
+    # Backpropagation
+    # -------------------------
 
-        # Propagate gradient backward through each layer
+    def backward(self, logits, y_onehot):
+
+        probs = self.softmax(logits)
+
+        delta = (probs - y_onehot) / y_onehot.shape[0]
+
         for layer in reversed(self.layers):
             delta = layer.backward(delta)
 
+    # -------------------------
+    # Prediction
+    # -------------------------
+
     def predict(self, X):
-        """Return predicted class indices."""
-        probs = self.forward(X)
+
+        logits = self.forward(X)
+        probs = self.softmax(logits)
+
         return np.argmax(probs, axis=1)
+
+    # -------------------------
+    # Weight Utilities
+    # -------------------------
+
     def get_weights(self):
-   
-        weights = {
-            "W": [],
-            "b": []
-        }
+
+        weights = {"W": [], "b": []}
 
         for layer in self.layers:
             weights["W"].append(layer.W)
             weights["b"].append(layer.b)
 
         return weights
-    
+
     def set_weights(self, weights):
-    
+        """
+        Load weights into the model.
+        Supports multiple formats.
+        """
+
+        # Case: saved using np.save(object)
         if isinstance(weights, np.ndarray) and weights.shape == ():
             weights = weights.item()
 
@@ -106,12 +130,10 @@ class NeuralNetwork:
 
                 w = weights[i]
 
-                # tuple format
                 if isinstance(w, tuple):
                     layer.W = w[0]
                     layer.b = w[1]
 
-                # dict format inside list
                 elif isinstance(w, dict):
                     layer.W = w["W"]
                     layer.b = w["b"]
