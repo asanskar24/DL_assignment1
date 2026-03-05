@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\question4_vanishing_gradient.py", line 82, in <module>
+    train_with_gradient_logging(activation, layers, X_train, X_val, y_train, y_val)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\question4_vanishing_gradient.py", line 51, in train_with_gradient_logging
+    optimizer.update(model.layers)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\ann\optimizers.py", line 115, in update
+    layer.W -= self.lr * (m_hat / (np.sqrt(v_hat) + self.eps) + self.wd * layer.W)
+                                   ~~~~~~~^^^^^^^
+KeyboardInterrupt

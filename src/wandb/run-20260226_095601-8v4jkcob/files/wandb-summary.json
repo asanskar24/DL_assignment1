@@ -1,0 +1,1 @@
+{"_step":0,"gap":-0.0007592592592592651,"activation":"sigmoid","_runtime":111,"optimizer":"sgd","_timestamp":1.772080074179664e+09,"train_accuracy":0.11274074074074074,"test_accuracy":0.1135,"_wandb":{"runtime":111},"num_layers":3}

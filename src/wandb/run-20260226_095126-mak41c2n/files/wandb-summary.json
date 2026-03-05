@@ -1,0 +1,1 @@
+{"gap":0.018162962962962936,"activation":"relu","_runtime":121,"train_accuracy":0.9949629629629629,"optimizer":"adam","_step":0,"num_layers":3,"_timestamp":1.7720798111336644e+09,"_wandb":{"runtime":121},"test_accuracy":0.9768}

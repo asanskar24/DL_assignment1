@@ -1,0 +1,41 @@
+2026-02-26 00:53:40,927 INFO    Thread-252 (_run_job):6824 [wandb_setup.py:_flush():81] Current SDK version is 0.25.0
+2026-02-26 00:53:40,927 INFO    Thread-252 (_run_job):6824 [wandb_setup.py:_flush():81] Configure stats pid to 6824
+2026-02-26 00:53:40,927 INFO    Thread-252 (_run_job):6824 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-02-26 00:53:40,927 INFO    Thread-252 (_run_job):6824 [wandb_init.py:setup_run_log_directory():717] Logging user logs to C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\wandb\run-20260226_005340-xwbp7rbo\logs\debug.log
+2026-02-26 00:53:40,928 INFO    Thread-252 (_run_job):6824 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\wandb\run-20260226_005340-xwbp7rbo\logs\debug-internal.log
+2026-02-26 00:53:40,928 INFO    Thread-252 (_run_job):6824 [wandb_init.py:init():844] calling init triggers
+2026-02-26 00:53:40,928 INFO    Thread-252 (_run_job):6824 [wandb_init.py:init():849] wandb.init called with sweep_config: {'activation': 'tanh', 'batch_size': 128, 'epochs': 5, 'hidden_size': 128, 'learning_rate': 0.01, 'loss': 'cross_entropy', 'num_layers': 3, 'optimizer': 'nadam', 'weight_decay': 0, 'weight_init': 'xavier'}
+config: {'_wandb': {}}
+2026-02-26 00:53:40,928 INFO    Thread-252 (_run_job):6824 [wandb_init.py:init():892] starting backend
+2026-02-26 00:53:43,181 INFO    Thread-252 (_run_job):6824 [wandb_init.py:init():895] sending inform_init request
+2026-02-26 00:53:43,185 INFO    Thread-252 (_run_job):6824 [wandb_init.py:init():903] backend started and connected
+2026-02-26 00:53:43,185 INFO    Thread-252 (_run_job):6824 [wandb_run.py:_config_callback():1403] config_cb None None {'activation': 'tanh', 'batch_size': 128, 'epochs': 5, 'hidden_size': 128, 'learning_rate': 0.01, 'loss': 'cross_entropy', 'num_layers': 3, 'optimizer': 'nadam', 'weight_decay': 0, 'weight_init': 'xavier'}
+2026-02-26 00:53:43,186 INFO    Thread-252 (_run_job):6824 [wandb_init.py:init():973] updated telemetry
+2026-02-26 00:53:43,243 INFO    Thread-252 (_run_job):6824 [wandb_init.py:init():997] communicating run to backend with 90.0 second timeout
+2026-02-26 00:53:44,222 INFO    Thread-252 (_run_job):6824 [wandb_init.py:init():1042] starting run threads in backend
+2026-02-26 00:53:44,351 INFO    Thread-252 (_run_job):6824 [wandb_run.py:_console_start():2524] atexit reg
+2026-02-26 00:53:44,351 INFO    Thread-252 (_run_job):6824 [wandb_run.py:_redirect():2373] redirect: wrap_raw
+2026-02-26 00:53:44,352 INFO    Thread-252 (_run_job):6824 [wandb_run.py:_redirect():2442] Wrapping output streams.
+2026-02-26 00:53:44,352 INFO    Thread-252 (_run_job):6824 [wandb_run.py:_redirect():2465] Redirects installed.
+2026-02-26 00:53:44,354 INFO    Thread-252 (_run_job):6824 [wandb_init.py:init():1082] run started, returning control to user process
+2026-02-26 00:54:05,633 ERROR   Thread-7 (_heartbeat):6824 [internal_api.py:execute():398] [no run ID] Error executing GraphQL.
+Traceback (most recent call last):
+  File "C:\Users\asans\AppData\Local\Programs\Python\Python313\Lib\site-packages\wandb\sdk\internal\internal_api.py", line 394, in execute
+    return self.client.execute(*args, **kwargs)  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\asans\AppData\Local\Programs\Python\Python313\Lib\site-packages\wandb\vendor\gql-0.2.0\wandb_gql\client.py", line 52, in execute
+    result = self._get_result(document, *args, **kwargs)
+  File "C:\Users\asans\AppData\Local\Programs\Python\Python313\Lib\site-packages\wandb\vendor\gql-0.2.0\wandb_gql\client.py", line 60, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asans\AppData\Local\Programs\Python\Python313\Lib\site-packages\wandb\sdk\lib\gql_request.py", line 71, in execute
+    request.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\asans\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://api.wandb.ai/graphql
+2026-02-26 00:54:10,494 INFO    Thread-252 (_run_job):6824 [wandb_run.py:_finish():2291] finishing run da25s019-iitm-india/da6401-assignment1/xwbp7rbo
+2026-02-26 00:54:10,494 INFO    Thread-252 (_run_job):6824 [wandb_run.py:_atexit_cleanup():2490] got exitcode: 0
+2026-02-26 00:54:10,495 INFO    Thread-252 (_run_job):6824 [wandb_run.py:_restore():2472] restore
+2026-02-26 00:54:10,495 INFO    Thread-252 (_run_job):6824 [wandb_run.py:_restore():2478] restore done
+2026-02-26 00:54:12,883 INFO    Thread-252 (_run_job):6824 [wandb_run.py:_footer_sync_info():3868] logging synced files

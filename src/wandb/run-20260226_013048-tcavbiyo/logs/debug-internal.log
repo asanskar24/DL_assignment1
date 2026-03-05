@@ -1,0 +1,12 @@
+{"time":"2026-02-26T01:30:50.386056+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-02-26T01:30:50.8834403+05:30","level":"INFO","msg":"stream: created new stream","id":"tcavbiyo"}
+{"time":"2026-02-26T01:30:50.8834403+05:30","level":"INFO","msg":"handler: started","stream_id":"tcavbiyo"}
+{"time":"2026-02-26T01:30:50.8845478+05:30","level":"INFO","msg":"stream: started","id":"tcavbiyo"}
+{"time":"2026-02-26T01:30:50.8845478+05:30","level":"INFO","msg":"writer: started","stream_id":"tcavbiyo"}
+{"time":"2026-02-26T01:30:50.8845478+05:30","level":"INFO","msg":"sender: started","stream_id":"tcavbiyo"}
+{"time":"2026-02-26T01:33:34.575803+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-26T01:33:35.0917064+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-26T01:33:35.0983367+05:30","level":"INFO","msg":"stream: closing","id":"tcavbiyo"}
+{"time":"2026-02-26T01:33:35.0983367+05:30","level":"INFO","msg":"handler: closed","stream_id":"tcavbiyo"}
+{"time":"2026-02-26T01:33:35.0996007+05:30","level":"INFO","msg":"sender: closed","stream_id":"tcavbiyo"}
+{"time":"2026-02-26T01:33:35.0996007+05:30","level":"INFO","msg":"stream: closed","id":"tcavbiyo"}

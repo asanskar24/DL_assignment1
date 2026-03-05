@@ -1,0 +1,25 @@
+2026-02-26 00:57:34,705 INFO    Thread-272 (_run_job):6824 [wandb_setup.py:_flush():81] Current SDK version is 0.25.0
+2026-02-26 00:57:34,705 INFO    Thread-272 (_run_job):6824 [wandb_setup.py:_flush():81] Configure stats pid to 6824
+2026-02-26 00:57:34,706 INFO    Thread-272 (_run_job):6824 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-02-26 00:57:34,706 INFO    Thread-272 (_run_job):6824 [wandb_init.py:setup_run_log_directory():717] Logging user logs to C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\wandb\run-20260226_005734-x78xpxh8\logs\debug.log
+2026-02-26 00:57:34,706 INFO    Thread-272 (_run_job):6824 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\wandb\run-20260226_005734-x78xpxh8\logs\debug-internal.log
+2026-02-26 00:57:34,706 INFO    Thread-272 (_run_job):6824 [wandb_init.py:init():844] calling init triggers
+2026-02-26 00:57:34,707 INFO    Thread-272 (_run_job):6824 [wandb_init.py:init():849] wandb.init called with sweep_config: {'activation': 'tanh', 'batch_size': 128, 'epochs': 5, 'hidden_size': 128, 'learning_rate': 0.01, 'loss': 'cross_entropy', 'num_layers': 3, 'optimizer': 'nadam', 'weight_decay': 0, 'weight_init': 'random'}
+config: {'_wandb': {}}
+2026-02-26 00:57:34,707 INFO    Thread-272 (_run_job):6824 [wandb_init.py:init():892] starting backend
+2026-02-26 00:57:36,951 INFO    Thread-272 (_run_job):6824 [wandb_init.py:init():895] sending inform_init request
+2026-02-26 00:57:36,955 INFO    Thread-272 (_run_job):6824 [wandb_init.py:init():903] backend started and connected
+2026-02-26 00:57:36,955 INFO    Thread-272 (_run_job):6824 [wandb_run.py:_config_callback():1403] config_cb None None {'activation': 'tanh', 'batch_size': 128, 'epochs': 5, 'hidden_size': 128, 'learning_rate': 0.01, 'loss': 'cross_entropy', 'num_layers': 3, 'optimizer': 'nadam', 'weight_decay': 0, 'weight_init': 'random'}
+2026-02-26 00:57:36,956 INFO    Thread-272 (_run_job):6824 [wandb_init.py:init():973] updated telemetry
+2026-02-26 00:57:37,011 INFO    Thread-272 (_run_job):6824 [wandb_init.py:init():997] communicating run to backend with 90.0 second timeout
+2026-02-26 00:57:38,153 INFO    Thread-272 (_run_job):6824 [wandb_init.py:init():1042] starting run threads in backend
+2026-02-26 00:57:38,298 INFO    Thread-272 (_run_job):6824 [wandb_run.py:_console_start():2524] atexit reg
+2026-02-26 00:57:38,298 INFO    Thread-272 (_run_job):6824 [wandb_run.py:_redirect():2373] redirect: wrap_raw
+2026-02-26 00:57:38,298 INFO    Thread-272 (_run_job):6824 [wandb_run.py:_redirect():2442] Wrapping output streams.
+2026-02-26 00:57:38,298 INFO    Thread-272 (_run_job):6824 [wandb_run.py:_redirect():2465] Redirects installed.
+2026-02-26 00:57:38,300 INFO    Thread-272 (_run_job):6824 [wandb_init.py:init():1082] run started, returning control to user process
+2026-02-26 00:58:04,165 INFO    Thread-272 (_run_job):6824 [wandb_run.py:_finish():2291] finishing run da25s019-iitm-india/da6401-assignment1/x78xpxh8
+2026-02-26 00:58:04,166 INFO    Thread-272 (_run_job):6824 [wandb_run.py:_atexit_cleanup():2490] got exitcode: 0
+2026-02-26 00:58:04,167 INFO    Thread-272 (_run_job):6824 [wandb_run.py:_restore():2472] restore
+2026-02-26 00:58:04,167 INFO    Thread-272 (_run_job):6824 [wandb_run.py:_restore():2478] restore done
+2026-02-26 00:58:06,740 INFO    Thread-272 (_run_job):6824 [wandb_run.py:_footer_sync_info():3868] logging synced files

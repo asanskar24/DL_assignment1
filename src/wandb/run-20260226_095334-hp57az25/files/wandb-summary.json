@@ -1,0 +1,1 @@
+{"_timestamp":1.7720799585322e+09,"activation":"relu","_step":0,"test_accuracy":0.9756,"gap":0.017955555555555502,"_wandb":{"runtime":143},"_runtime":143,"train_accuracy":0.9935555555555555,"optimizer":"adam","num_layers":6}

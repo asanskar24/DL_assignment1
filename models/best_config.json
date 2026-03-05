@@ -1,0 +1,19 @@
+{
+  "dataset": "mnist",
+  "layer_sizes": [
+    784,
+    128,
+    128,
+    128,
+    10
+  ],
+  "hidden_size": 128,
+  "num_layers": 3,
+  "activation": "relu",
+  "weight_init": "xavier",
+  "loss": "mse",
+  "optimizer": "adam",
+  "learning_rate": 0.001,
+  "weight_decay": 0.0,
+  "batch_size": 64
+}

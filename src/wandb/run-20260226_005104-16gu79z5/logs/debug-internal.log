@@ -1,0 +1,13 @@
+{"time":"2026-02-26T00:51:07.0613208+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-02-26T00:51:07.7117339+05:30","level":"INFO","msg":"stream: created new stream","id":"16gu79z5"}
+{"time":"2026-02-26T00:51:07.7117339+05:30","level":"INFO","msg":"handler: started","stream_id":"16gu79z5"}
+{"time":"2026-02-26T00:51:07.7133465+05:30","level":"INFO","msg":"stream: started","id":"16gu79z5"}
+{"time":"2026-02-26T00:51:07.7133465+05:30","level":"INFO","msg":"writer: started","stream_id":"16gu79z5"}
+{"time":"2026-02-26T00:51:07.7133465+05:30","level":"INFO","msg":"sender: started","stream_id":"16gu79z5"}
+{"time":"2026-02-26T00:51:35.4277002+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-26T00:52:29.3832599+05:30","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/da25s019-iitm-india/da6401-assignment1/16gu79z5/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2026-02-26T00:52:32.9119245+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-26T00:52:32.918377+05:30","level":"INFO","msg":"stream: closing","id":"16gu79z5"}
+{"time":"2026-02-26T00:52:32.918377+05:30","level":"INFO","msg":"handler: closed","stream_id":"16gu79z5"}
+{"time":"2026-02-26T00:52:32.9300056+05:30","level":"INFO","msg":"sender: closed","stream_id":"16gu79z5"}
+{"time":"2026-02-26T00:52:32.9300056+05:30","level":"INFO","msg":"stream: closed","id":"16gu79z5"}

@@ -1,0 +1,1 @@
+{"_wandb":{"runtime":138},"train_accuracy":0.9927592592592592,"num_layers":4,"gap":0.01895925925925923,"optimizer":"adam","activation":"tanh","_step":0,"_runtime":138,"test_accuracy":0.9738,"_timestamp":1.7720802171755872e+09}

@@ -1,0 +1,76 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            bxoam2pv1fxi21bnwrcdcjm0ub05vqsu:
+                codePath: src\question2_sweep.py
+                codePathLocal: question2_sweep.py
+                cpu_count: 4
+                cpu_count_logical: 8
+                cudaVersion: "11.3"
+                disk:
+                    /:
+                        total: "382097944576"
+                        used: "324528267264"
+                email: da25s019@smail.iitm.ac.in
+                executable: C:\Users\asans\AppData\Local\Programs\Python\Python313\python.exe
+                git:
+                    commit: ef798049bfcd1db80d4ec4589f04961f33ac3552
+                    remote: https://github.com/MiRL-IITM/da6401_assignment_1
+                gpu: NVIDIA GeForce GTX 1650 with Max-Q Design
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Turing
+                      name: NVIDIA GeForce GTX 1650 with Max-Q Design
+                      uuid: GPU-e9e55b57-df1b-9740-2cf3-522fbcb0fac9
+                host: MSI
+                memory:
+                    total: "8426479616"
+                os: Windows-11-10.0.26200-SP0
+                program: C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\question2_sweep.py
+                python: CPython 3.13.9
+                root: C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src
+                startedAt: "2026-02-25T19:33:04.709367Z"
+                writerId: bxoam2pv1fxi21bnwrcdcjm0ub05vqsu
+        m: []
+        python_version: 3.13.9
+        t:
+            "1":
+                - 2
+                - 3
+                - 5
+                - 53
+            "2":
+                - 2
+                - 3
+                - 5
+                - 53
+            "3":
+                - 2
+                - 14
+            "4": 3.13.9
+            "5": 0.25.0
+            "8":
+                - 3
+            "12": 0.25.0
+            "13": windows-amd64
+activation:
+    value: tanh
+batch_size:
+    value: 64
+epochs:
+    value: 10
+hidden_size:
+    value: 64
+learning_rate:
+    value: 0.001
+loss:
+    value: cross_entropy
+num_layers:
+    value: 2
+optimizer:
+    value: nadam
+weight_decay:
+    value: 0
+weight_init:
+    value: xavier

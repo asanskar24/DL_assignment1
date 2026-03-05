@@ -1,0 +1,12 @@
+{"time":"2026-02-26T00:47:08.7605402+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-02-26T00:47:09.429902+05:30","level":"INFO","msg":"stream: created new stream","id":"osfbufiz"}
+{"time":"2026-02-26T00:47:09.4304675+05:30","level":"INFO","msg":"handler: started","stream_id":"osfbufiz"}
+{"time":"2026-02-26T00:47:09.4322276+05:30","level":"INFO","msg":"stream: started","id":"osfbufiz"}
+{"time":"2026-02-26T00:47:09.4322276+05:30","level":"INFO","msg":"sender: started","stream_id":"osfbufiz"}
+{"time":"2026-02-26T00:47:09.4322276+05:30","level":"INFO","msg":"writer: started","stream_id":"osfbufiz"}
+{"time":"2026-02-26T00:47:44.8040709+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-26T00:47:45.3889152+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-26T00:47:45.3966233+05:30","level":"INFO","msg":"stream: closing","id":"osfbufiz"}
+{"time":"2026-02-26T00:47:45.397152+05:30","level":"INFO","msg":"handler: closed","stream_id":"osfbufiz"}
+{"time":"2026-02-26T00:47:45.3982797+05:30","level":"INFO","msg":"sender: closed","stream_id":"osfbufiz"}
+{"time":"2026-02-26T00:47:45.3982797+05:30","level":"INFO","msg":"stream: closed","id":"osfbufiz"}

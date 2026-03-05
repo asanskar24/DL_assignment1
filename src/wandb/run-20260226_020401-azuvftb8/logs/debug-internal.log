@@ -1,0 +1,12 @@
+{"time":"2026-02-26T02:04:04.0050749+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-02-26T02:04:04.4243851+05:30","level":"INFO","msg":"stream: created new stream","id":"azuvftb8"}
+{"time":"2026-02-26T02:04:04.4243851+05:30","level":"INFO","msg":"handler: started","stream_id":"azuvftb8"}
+{"time":"2026-02-26T02:04:04.4259371+05:30","level":"INFO","msg":"stream: started","id":"azuvftb8"}
+{"time":"2026-02-26T02:04:04.4259371+05:30","level":"INFO","msg":"sender: started","stream_id":"azuvftb8"}
+{"time":"2026-02-26T02:04:04.4259371+05:30","level":"INFO","msg":"writer: started","stream_id":"azuvftb8"}
+{"time":"2026-02-26T02:06:43.0480193+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-26T02:06:43.6671806+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-26T02:06:43.6737532+05:30","level":"INFO","msg":"stream: closing","id":"azuvftb8"}
+{"time":"2026-02-26T02:06:43.6737532+05:30","level":"INFO","msg":"handler: closed","stream_id":"azuvftb8"}
+{"time":"2026-02-26T02:06:43.6856158+05:30","level":"INFO","msg":"sender: closed","stream_id":"azuvftb8"}
+{"time":"2026-02-26T02:06:43.6861434+05:30","level":"INFO","msg":"stream: closed","id":"azuvftb8"}

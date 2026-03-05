@@ -1,0 +1,12 @@
+{"time":"2026-02-26T00:12:26.0825613+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-02-26T00:12:26.6143451+05:30","level":"INFO","msg":"stream: created new stream","id":"kmay1zha"}
+{"time":"2026-02-26T00:12:26.6143451+05:30","level":"INFO","msg":"handler: started","stream_id":"kmay1zha"}
+{"time":"2026-02-26T00:12:26.6159357+05:30","level":"INFO","msg":"stream: started","id":"kmay1zha"}
+{"time":"2026-02-26T00:12:26.6159357+05:30","level":"INFO","msg":"writer: started","stream_id":"kmay1zha"}
+{"time":"2026-02-26T00:12:26.6159357+05:30","level":"INFO","msg":"sender: started","stream_id":"kmay1zha"}
+{"time":"2026-02-26T00:13:46.5740253+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-26T00:13:47.1255987+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-26T00:13:47.1321097+05:30","level":"INFO","msg":"stream: closing","id":"kmay1zha"}
+{"time":"2026-02-26T00:13:47.1321097+05:30","level":"INFO","msg":"handler: closed","stream_id":"kmay1zha"}
+{"time":"2026-02-26T00:13:47.1436791+05:30","level":"INFO","msg":"sender: closed","stream_id":"kmay1zha"}
+{"time":"2026-02-26T00:13:47.1436791+05:30","level":"INFO","msg":"stream: closed","id":"kmay1zha"}

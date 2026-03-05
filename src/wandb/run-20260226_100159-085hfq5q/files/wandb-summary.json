@@ -1,0 +1,1 @@
+{"_wandb":{"runtime":105},"_runtime":105,"_timestamp":1.7720804260795293e+09,"num_layers":2,"optimizer":"rmsprop","gap":0.017585185185185148,"activation":"relu","train_accuracy":0.9971851851851852,"test_accuracy":0.9796,"_step":0}

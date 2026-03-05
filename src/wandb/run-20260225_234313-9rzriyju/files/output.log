@@ -1,0 +1,12 @@
+Logged 50 sample images (5 per class) to W&B Table
+Class distribution:
+  Class 0: 5923 samples
+  Class 1: 6742 samples
+  Class 2: 5958 samples
+  Class 3: 6131 samples
+  Class 4: 5842 samples
+  Class 5: 5421 samples
+  Class 6: 5918 samples
+  Class 7: 6265 samples
+  Class 8: 5851 samples
+  Class 9: 5949 samples

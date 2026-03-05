@@ -1,0 +1,1 @@
+{"_runtime":95,"test_accuracy":0.9765,"_step":0,"gap":0.01751851851851849,"_wandb":{"runtime":95},"train_accuracy":0.9940185185185185,"_timestamp":1.7720803171233447e+09,"num_layers":3,"activation":"relu","optimizer":"nadam"}

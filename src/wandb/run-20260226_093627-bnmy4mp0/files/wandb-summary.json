@@ -1,0 +1,1 @@
+{"_runtime":108,"_timestamp":1.7720788975713367e+09,"_step":9,"train_loss":1.895366028449409,"_wandb":{"runtime":108},"mean_activation":0.21845926395260795,"epoch":10,"dead_neuron_count":1,"val_loss":1.8616387877212899,"val_accuracy":0.633}

@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\train.py", line 145, in <module>
+    train(args)
+    ~~~~~^^^^^^
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\train.py", line 79, in train
+    loss  = model.compute_loss(probs, yb)
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\ann\neural_network.py", line 57, in compute_loss
+    return Loss.compute(probs, y_onehot, self.loss_type)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\ann\objective_functions.py", line 42, in compute
+    raise ValueError(f"Unknown loss type: {loss_type}")
+ValueError: Unknown loss type: msec:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\venv\Scripts\activate

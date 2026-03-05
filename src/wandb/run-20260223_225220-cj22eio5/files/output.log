@@ -1,0 +1,13 @@
+Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
+[1m11490434/11490434[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m3s[0m 0us/step
+Epoch 1/10 | Train Acc: 0.9645 | Val Acc: 0.9588 | Val Loss: 0.1348
+Traceback (most recent call last):
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\train.py", line 145, in <module>
+    train(args)
+    ~~~~~^^^^^^
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\train.py", line 109, in train
+    np.save('models/best_model.npy', weights)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asans\AppData\Local\Programs\Python\Python313\Lib\site-packages\numpy\lib\_npyio_impl.py", line 568, in save
+    file_ctx = open(file, "wb")
+FileNotFoundError: [Errno 2] No such file or directory: 'models/best_model.npy'
