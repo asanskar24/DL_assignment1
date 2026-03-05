@@ -4,7 +4,6 @@ Evaluate trained models on test sets
 """
 
 import argparse
-from xml.parsers.expat import model
 import numpy as np
 import json
 from keras.datasets import mnist, fashion_mnist
@@ -26,12 +25,7 @@ def load_test_data(dataset_name):
         (_, _), (X_test, y_test) = fashion_mnist.load_data()
     return X_test.reshape(-1, 784) / 255.0, y_test
 def load_model(weights_path, config_path=None):
-    """
-    Load a trained model and its weights.
-    Used by the autograder.
-    """
 
-    # If config file is provided
     if config_path is not None:
         with open(config_path, "r") as f:
             config = json.load(f)
@@ -42,7 +36,6 @@ def load_model(weights_path, config_path=None):
         loss = config["loss"]
 
     else:
-        # fallback architecture (used by dummy tests)
         layer_sizes = [784, 128, 10]
         activation = "relu"
         weight_init = "xavier"
@@ -58,8 +51,15 @@ def load_model(weights_path, config_path=None):
     weights = np.load(weights_path, allow_pickle=True)
 
     for i, layer in enumerate(model.layers):
-        layer.W = weights[i]["W"]
-        layer.b = weights[i]["b"]
+
+        w = weights[i]
+
+        if isinstance(w, dict):
+            layer.W = w["W"]
+            layer.b = w["b"]
+        else:
+            layer.W = w[0]
+            layer.b = w[1]
 
     return model
 
