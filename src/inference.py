@@ -4,6 +4,7 @@ Evaluate trained models on test sets
 """
 
 import argparse
+from xml.parsers.expat import model
 import numpy as np
 import json
 from keras.datasets import mnist, fashion_mnist
@@ -24,7 +25,43 @@ def load_test_data(dataset_name):
     else:
         (_, _), (X_test, y_test) = fashion_mnist.load_data()
     return X_test.reshape(-1, 784) / 255.0, y_test
+def load_model(weights_path, config_path=None):
+    """
+    Load a trained model and its weights.
+    Used by the autograder.
+    """
 
+    # If config file is provided
+    if config_path is not None:
+        with open(config_path, "r") as f:
+            config = json.load(f)
+
+        layer_sizes = config["layer_sizes"]
+        activation = config["activation"]
+        weight_init = config["weight_init"]
+        loss = config["loss"]
+
+    else:
+        # fallback architecture (used by dummy tests)
+        layer_sizes = [784, 128, 10]
+        activation = "relu"
+        weight_init = "xavier"
+        loss = "cross_entropy"
+
+    model = NeuralNetwork(
+        layer_sizes,
+        activation=activation,
+        weight_init=weight_init,
+        loss=loss
+    )
+
+    weights = np.load(weights_path, allow_pickle=True)
+
+    for i, layer in enumerate(model.layers):
+        layer.W = weights[i]["W"]
+        layer.b = weights[i]["b"]
+
+    return model
 
 def infer(args):
     # Load config
@@ -35,19 +72,9 @@ def infer(args):
     X_test, y_test = load_test_data(config['dataset'])
 
     # Rebuild model from config
-    model = NeuralNetwork(
-        config['layer_sizes'],
-        activation=config['activation'],
-        weight_init=config['weight_init'],
-        loss=config['loss']
-    )
-
-    # Load saved weights
-    weights = np.load(args.weights, allow_pickle=True)
-    for i, layer in enumerate(model.layers):
-        layer.W = weights[i]['W']
-        layer.b = weights[i]['b']
-
+    # Rebuild model from config
+   
+    model = load_model(args.weights, args.config)
     # Run predictions
     preds = model.predict(X_test)
 
