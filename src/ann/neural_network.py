@@ -109,14 +109,9 @@ class NeuralNetwork:
         return weights
 
     def set_weights(self, weights):
-        """
-        Load weights into the model.
-        Supports multiple formats.
-        """
-
-        # Case: saved using np.save(object)
-        if isinstance(weights, np.ndarray) and weights.shape == ():
-            weights = weights.item()
+  
+        if isinstance(weights, np.ndarray):
+            weights = weights.tolist()
 
         # Format 1: {"W":[...], "b":[...]}
         if isinstance(weights, dict) and "W" in weights:
@@ -125,7 +120,7 @@ class NeuralNetwork:
                 layer.b = weights["b"][i]
 
         # Format 2: [(W,b), (W,b)]
-        elif isinstance(weights, (list, np.ndarray)):
+        elif isinstance(weights, list):
             for i, layer in enumerate(self.layers):
 
                 w = weights[i]

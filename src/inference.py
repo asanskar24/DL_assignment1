@@ -41,10 +41,6 @@ def parse_arguments():
 
 def load_model(model_path):
     weights = np.load(model_path, allow_pickle=True)
-
-    if isinstance(weights, np.ndarray) and weights.shape == ():
-        weights = weights.item()
-
     return weights
 
 
