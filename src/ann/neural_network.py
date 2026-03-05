@@ -76,3 +76,20 @@ class NeuralNetwork:
         """Return predicted class indices."""
         probs = self.forward(X)
         return np.argmax(probs, axis=1)
+    def get_weights(self):
+   
+        weights = {
+            "W": [],
+            "b": []
+        }
+
+        for layer in self.layers:
+            weights["W"].append(layer.W)
+            weights["b"].append(layer.b)
+
+        return weights
+    def set_weights(self, weights):
+
+        for i, layer in enumerate(self.layers):
+            layer.W = weights["W"][i]
+            layer.b = weights["b"][i]

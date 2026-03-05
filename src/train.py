@@ -104,8 +104,8 @@ def train(args):
         # Save best model based on validation accuracy
         if val_acc > best_val_acc:
             best_val_acc = val_acc
-            weights = [{'W': l.W, 'b': l.b} for l in model.layers]
-            np.save('best_model.npy', weights)
+            best_weights = model.get_weights()
+            np.save("best_model.npy", best_weights)
 
             config = {
                 'dataset': args.dataset,
