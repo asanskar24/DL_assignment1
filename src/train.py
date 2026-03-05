@@ -106,7 +106,7 @@ def train(args):
         if val_acc > best_val_acc:
             best_val_acc = val_acc
             weights = [{'W': l.W, 'b': l.b} for l in model.layers]
-            np.save('../models/best_model.npy', weights)
+            np.save('../best_model.npy', weights)
 
             config = {
                 'dataset': args.dataset,
@@ -121,7 +121,7 @@ def train(args):
                 'weight_decay': args.weight_decay,
                 'batch_size': args.batch_size,
             }
-            with open('../models/best_config.json', 'w') as f:
+            with open('../best_config.json', 'w') as f:
                 json.dump(config, f, indent=2)
 
     wandb.finish()
