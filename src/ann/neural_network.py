@@ -90,25 +90,31 @@ class NeuralNetwork:
         return weights
     
     def set_weights(self, weights):
+    
+        if isinstance(weights, np.ndarray) and weights.shape == ():
+            weights = weights.item()
 
-    # Case 1: dictionary format
-        if isinstance(weights, dict):
+        # Format 1: {"W":[...], "b":[...]}
+        if isinstance(weights, dict) and "W" in weights:
             for i, layer in enumerate(self.layers):
                 layer.W = weights["W"][i]
                 layer.b = weights["b"][i]
 
-    # Case 2: list or numpy array
+        # Format 2: [(W,b), (W,b)]
         elif isinstance(weights, (list, np.ndarray)):
             for i, layer in enumerate(self.layers):
 
                 w = weights[i]
 
-            # list of dictionaries
-                if isinstance(w, dict):
+                # tuple format
+                if isinstance(w, tuple):
+                    layer.W = w[0]
+                    layer.b = w[1]
+
+                # dict format inside list
+                elif isinstance(w, dict):
                     layer.W = w["W"]
                     layer.b = w["b"]
 
-            # tuple format (W,b)
                 else:
-                    layer.W = w[0]
-                    layer.b = w[1]
+                    raise ValueError("Unknown weight format")
