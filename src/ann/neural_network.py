@@ -12,13 +12,19 @@ class NeuralNetwork:
 
     def __init__(self, layer_sizes, activation='relu', weight_init='xavier', loss='cross_entropy'):
 
-        # If a Namespace is passed instead of layer_sizes
+        # If Namespace is passed instead of layer_sizes
         if isinstance(layer_sizes, argparse.Namespace):
+
             args = layer_sizes
-            layer_sizes = [784] + [args.hidden_size] * args.num_layers + [10]
-            activation = args.activation
-            weight_init = args.weight_init
-            loss = args.loss
+
+            # Safely extract values
+            num_layers = getattr(args, "num_layers", 1)
+            hidden_size = getattr(args, "hidden_size", 128)
+            activation = getattr(args, "activation", activation)
+            weight_init = getattr(args, "weight_init", weight_init)
+            loss = getattr(args, "loss", loss)
+
+            layer_sizes = [784] + [hidden_size] * num_layers + [10]
 
         self.loss_type = loss
         self.layers = []
