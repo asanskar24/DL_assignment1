@@ -1,0 +1,16 @@
+Epoch 1/10 | Train Acc: 0.9269 | Val Acc: 0.9282 | Val Loss: 0.2510
+Epoch 2/10 | Train Acc: 0.9519 | Val Acc: 0.9523 | Val Loss: 0.1702
+Epoch 3/10 | Train Acc: 0.9666 | Val Acc: 0.9597 | Val Loss: 0.1288
+Traceback (most recent call last):
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\train.py", line 145, in <module>
+    train(args)
+    ~~~~~^^^^^^
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\train.py", line 83, in train
+    model.backward(yb)
+    ~~~~~~~~~~~~~~^^^^
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\neural_network.py", line 70, in backward
+    delta = layer.backward(delta)
+  File "C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\neural_layer.py", line 72, in backward
+    return np.dot(dZ, self.W.T)
+           ~~~~~~^^^^^^^^^^^^^^
+KeyboardInterrupt

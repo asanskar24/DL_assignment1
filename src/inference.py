@@ -14,7 +14,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from ann.neural_network import NeuralNetwork
+from neural_network import NeuralNetwork
 
 
 def load_test_data(dataset_name):

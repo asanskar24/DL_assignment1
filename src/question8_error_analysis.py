@@ -7,7 +7,8 @@ from sklearn.model_selection import train_test_split
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from ann import NeuralNetwork, get_optimizer
+from .neural_network import NeuralNetwork
+from .optimizers import get_optimizer
 
 
 def one_hot(y, num_classes=10):
