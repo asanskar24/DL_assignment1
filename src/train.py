@@ -14,8 +14,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from neural_network import NeuralNetwork
-from optimizers import get_optimizer
+from ann import NeuralNetwork, get_optimizer
 
 
 def load_data(dataset_name):

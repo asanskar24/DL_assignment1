@@ -4,8 +4,8 @@ Handles forward and backward propagation loops
 """
 
 import numpy as np
-from neural_layer import Layer
-from objective_functions import Loss
+from .neural_layer import Layer
+from .objective_functions import Loss
 
 
 class NeuralNetwork:
