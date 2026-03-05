@@ -89,7 +89,16 @@ class NeuralNetwork:
 
         return weights
     def set_weights(self, weights):
+    
 
-        for i, layer in enumerate(self.layers):
-            layer.W = weights["W"][i]
-            layer.b = weights["b"][i]
+    # Case 1: dictionary format
+        if isinstance(weights, dict):
+            for i, layer in enumerate(self.layers):
+                layer.W = weights["W"][i]
+                layer.b = weights["b"][i]
+
+    # Case 2: list of dictionaries
+        elif isinstance(weights, list):
+            for i, layer in enumerate(self.layers):
+                layer.W = weights[i]["W"]
+                layer.b = weights[i]["b"]
