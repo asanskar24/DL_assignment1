@@ -40,10 +40,11 @@ def parse_arguments():
 
 
 def load_model(model_path):
-    """
-    Load trained model weights from disk.
-    """
-    weights = np.load(model_path, allow_pickle=True).item()
+    weights = np.load(model_path, allow_pickle=True)
+
+    if isinstance(weights, np.ndarray) and weights.shape == ():
+        weights = weights.item()
+
     return weights
 
 

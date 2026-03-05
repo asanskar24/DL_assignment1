@@ -88,8 +88,8 @@ class NeuralNetwork:
             weights["b"].append(layer.b)
 
         return weights
-    def set_weights(self, weights):
     
+    def set_weights(self, weights):
 
     # Case 1: dictionary format
         if isinstance(weights, dict):
@@ -97,8 +97,18 @@ class NeuralNetwork:
                 layer.W = weights["W"][i]
                 layer.b = weights["b"][i]
 
-    # Case 2: list of dictionaries
-        elif isinstance(weights, list):
+    # Case 2: list or numpy array
+        elif isinstance(weights, (list, np.ndarray)):
             for i, layer in enumerate(self.layers):
-                layer.W = weights[i]["W"]
-                layer.b = weights[i]["b"]
+
+                w = weights[i]
+
+            # list of dictionaries
+                if isinstance(w, dict):
+                    layer.W = w["W"]
+                    layer.b = w["b"]
+
+            # tuple format (W,b)
+                else:
+                    layer.W = w[0]
+                    layer.b = w[1]

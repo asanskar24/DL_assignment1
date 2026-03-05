@@ -65,8 +65,8 @@ class Layer:
         dZ = delta * Activation.derivative(self.pre_activation, self.activation)
 
         # Gradient w.r.t weights and biases (averaged over batch)
-        self.grad_W = np.dot(self.input.T, dZ) / self.input.shape[0]
-        self.grad_b = np.mean(dZ, axis=0, keepdims=True)
+        self.grad_W = np.dot(self.input.T, dZ)
+        self.grad_b = np.sum(dZ, axis=0, keepdims=True)
 
         # Gradient to pass to the previous layer
         return np.dot(dZ, self.W.T)
