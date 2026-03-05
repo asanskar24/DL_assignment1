@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from ann import MLP, get_optimizer
+from ann import NeuralNetwork, get_optimizer
 
 
 def one_hot(y, num_classes=10):
@@ -50,7 +50,7 @@ def run_sweep():
     y_val_oh   = one_hot(y_val)
 
     layer_sizes = [784] + [config.hidden_size] * config.num_layers + [10]
-    model = MLP(layer_sizes, activation=config.activation,
+    model = NeuralNetwork(layer_sizes, activation=config.activation,
                 weight_init=config.weight_init, loss=config.loss)
     optimizer = get_optimizer(config.optimizer, config.learning_rate, config.weight_decay)
 

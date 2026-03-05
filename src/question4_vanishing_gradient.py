@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from ann import MLP, get_optimizer
+from ann import NeuralNetwork, get_optimizer
 
 
 def one_hot(y, num_classes=10):
@@ -26,7 +26,7 @@ def train_with_gradient_logging(activation_name, num_layers, X_train, X_val, y_t
     y_val_oh   = one_hot(y_val)
 
     layer_sizes = [784] + [128] * num_layers + [10]
-    model = MLP(layer_sizes, activation=activation_name, weight_init='xavier', loss='cross_entropy')
+    model = NeuralNetwork(layer_sizes, activation=activation_name, weight_init='xavier', loss='cross_entropy')
     optimizer = get_optimizer('adam', lr=0.001)
 
     wandb.init(project="da6401-assignment1",

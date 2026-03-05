@@ -2,10 +2,7 @@ import numpy as np
 
 
 class Activation:
-    """
-    Contains all activation functions and their derivatives.
-    Used by the Layer class during forward and backward passes.
-    """
+   
 
     @staticmethod
     def sigmoid(Z):
@@ -14,7 +11,7 @@ class Activation:
     @staticmethod
     def sigmoid_derivative(Z):
         s = Activation.sigmoid(Z)
-        return s * (1 - s)
+        return s *(1 - s)
 
     @staticmethod
     def tanh(Z):
@@ -42,7 +39,7 @@ class Activation:
 
     @staticmethod
     def activate(Z, name):
-        """Apply activation function by name."""
+        
         functions = {
             'sigmoid': Activation.sigmoid,
             'tanh': Activation.tanh,
@@ -53,7 +50,7 @@ class Activation:
 
     @staticmethod
     def derivative(Z, name):
-        """Apply activation derivative by name."""
+        
         derivatives = {
             'sigmoid': Activation.sigmoid_derivative,
             'tanh': Activation.tanh_derivative,

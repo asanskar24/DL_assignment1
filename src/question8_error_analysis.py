@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from ann import MLP, get_optimizer
+from ann import NeuralNetwork, get_optimizer
 
 
 def one_hot(y, num_classes=10):
@@ -27,7 +27,7 @@ def load_data():
 def train_best_model(X_train, X_val, y_train, y_val):
     y_train_oh = one_hot(y_train)
 
-    model = MLP([784, 128, 128, 128, 10], activation='relu',
+    model = NeuralNetwork([784, 128, 128, 128, 10], activation='relu',
                 weight_init='xavier', loss='cross_entropy')
     optimizer = get_optimizer('adam', lr=0.001)
 

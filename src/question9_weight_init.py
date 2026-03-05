@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from ann import MLP, get_optimizer
+from ann import NeuralNetwork, get_optimizer
 
 
 def one_hot(y, num_classes=10):
@@ -37,7 +37,7 @@ def train_init_comparison(init_type, X_train, y_train):
     if init_type == 'zeros':
         model = ZeroInitMLP([784, 128, 128, 10], activation='relu')
     else:
-        model = MLP([784, 128, 128, 10], activation='relu', weight_init='xavier')
+        model = NeuralNetwork([784, 128, 128, 10], activation='relu', weight_init='xavier')
 
     optimizer = get_optimizer('adam', lr=0.001)
 

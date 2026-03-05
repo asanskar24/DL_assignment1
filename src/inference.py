@@ -14,7 +14,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from ann.neural_network import MLP
+from ann.neural_network import NeuralNetwork
 
 
 def load_test_data(dataset_name):
@@ -35,7 +35,7 @@ def infer(args):
     X_test, y_test = load_test_data(config['dataset'])
 
     # Rebuild model from config
-    model = MLP(
+    model = NeuralNetwork(
         config['layer_sizes'],
         activation=config['activation'],
         weight_init=config['weight_init'],

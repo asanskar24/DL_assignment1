@@ -14,7 +14,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ann.neural_network import MLP
+from ann.neural_network import NeuralNetwork
 from ann.optimizers import get_optimizer
 
 
@@ -49,7 +49,7 @@ def train(args):
 
     # Build model
     layer_sizes = [784] + [args.hidden_size] * args.num_layers + [10]
-    model = MLP(
+    model = NeuralNetwork(
         layer_sizes,
         activation=args.activation,
         weight_init=args.weight_init,

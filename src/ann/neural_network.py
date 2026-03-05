@@ -8,7 +8,7 @@ from .neural_layer import Layer
 from .objective_functions import Loss
 
 
-class MLP:
+class NeuralNetwork:
     """
     Multi-Layer Perceptron built from Layer objects.
     Supports forward pass, loss computation, and backpropagation.
