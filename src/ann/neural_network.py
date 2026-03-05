@@ -6,31 +6,28 @@ Handles forward and backward propagation loops
 import numpy as np
 from .neural_layer import Layer
 from .objective_functions import Loss
-
+import argparse
 
 class NeuralNetwork:
-    """
-    Multi-Layer Perceptron built from Layer objects.
-    Supports forward pass, loss computation, and backpropagation.
-    """
 
     def __init__(self, layer_sizes, activation='relu', weight_init='xavier', loss='cross_entropy'):
-        """
-        Args:
-            layer_sizes: list of sizes e.g. [784, 128, 128, 10]
-            activation: activation function for hidden layers
-            weight_init: 'xavier' or 'random'
-            loss: 'cross_entropy' or 'mse'
-        """
+
+        # If a Namespace is passed instead of layer_sizes
+        if isinstance(layer_sizes, argparse.Namespace):
+            args = layer_sizes
+            layer_sizes = [784] + [args.hidden_size] * args.num_layers + [10]
+            activation = args.activation
+            weight_init = args.weight_init
+            loss = args.loss
+
         self.loss_type = loss
         self.layers = []
 
         for i in range(len(layer_sizes) - 1):
-            # Last layer uses linear activation (softmax applied separately)
             act = activation if i < len(layer_sizes) - 2 else 'linear'
             self.layers.append(Layer(layer_sizes[i], layer_sizes[i + 1], act, weight_init))
 
-        self.probs = None  # Stores softmax output after forward pass
+        self.probs = None
 
     def softmax(self, Z):
         """Numerically stable softmax."""
