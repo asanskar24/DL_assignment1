@@ -8,17 +8,35 @@ from ann.neural_network import NeuralNetwork
 
 def parse_arguments():
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description="Run inference")
 
-    parser.add_argument("--model_path", type=str, required=True)
+    parser.add_argument(
+        "--model_path",
+        type=str,
+        default="best_model.npy"
+    )
 
-    parser.add_argument("--dataset", default="mnist")
+    parser.add_argument(
+        "--dataset",
+        default="mnist"
+    )
 
-    parser.add_argument("--hidden_layers", type=int, default=1)
+    parser.add_argument(
+        "--hidden_layers",
+        type=int,
+        default=1
+    )
 
-    parser.add_argument("--num_neurons", type=int, default=128)
+    parser.add_argument(
+        "--num_neurons",
+        type=int,
+        default=128
+    )
 
-    parser.add_argument("--activation", default="relu")
+    parser.add_argument(
+        "--activation",
+        default="relu"
+    )
 
     return parser.parse_args()
 
