@@ -9,9 +9,10 @@ class NeuralNetwork:
 
         activation = getattr(args, "activation", "relu")
 
-        hidden_sizes = args.hidden_size
+        hidden_layers = getattr(args, "hidden_layers", 1)
+        num_neurons = getattr(args, "num_neurons", 128)
 
-        layer_sizes = [784] + hidden_sizes + [10]
+        layer_sizes = [784] + [num_neurons] * hidden_layers + [10]
 
         self.layers = []
 
@@ -22,7 +23,6 @@ class NeuralNetwork:
             self.layers.append(
                 Layer(layer_sizes[i], layer_sizes[i+1], act)
             )
-
     # -----------------------------
     # Forward Pass
     # -----------------------------
