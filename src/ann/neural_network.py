@@ -68,11 +68,15 @@ class NeuralNetwork:
             delta = layer.backward(delta)
 
             grad_W_list.append(layer.grad_W)
-            grad_b_list.append(layer.grad_b)
+            grad_b_list.append(layer.grad_b.reshape(1,-1))
 
         # convert to object arrays (autograder requirement)
-        self.grad_W = np.array(grad_W_list, dtype=object)
-        self.grad_b = np.array(grad_b_list, dtype=object)
+        self.grad_W = np.empty(len(grad_W_list), dtype=object)
+        self.grad_b = np.empty(len(grad_b_list), dtype=object)
+
+        for i, (gw, gb) in enumerate(zip(grad_W_list, grad_b_list)):
+            self.grad_W[i] = gw
+            self.grad_b[i] = gb
 
         return self.grad_W, self.grad_b
 
