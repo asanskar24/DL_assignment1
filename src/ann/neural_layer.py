@@ -54,19 +54,13 @@ class Layer:
         return self.output
 
     def backward(self, delta):
-        """
-        Backward pass through this layer.
-        Args:
-            delta: gradient flowing in from the layer above, shape (batch_size, output_size)
-        Returns:
-            gradient to pass to the previous layer
-        """
-        # Multiply incoming gradient by local activation derivative
+
         dZ = delta * Activation.derivative(self.pre_activation, self.activation)
 
-        # Gradient w.r.t weights and biases (averaged over batch)
-        self.grad_W = np.dot(self.input.T, dZ)
-        self.grad_b = np.sum(dZ, axis=0, keepdims=True)
+        # gradients
+        self.grad_W = np.dot(self.input.T, dZ) / self.input.shape[0]
 
-        # Gradient to pass to the previous layer
+        self.grad_b = np.mean(dZ, axis=0, keepdims=True)
+
+        # propagate to previous layer
         return np.dot(dZ, self.W.T)
