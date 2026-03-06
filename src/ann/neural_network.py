@@ -7,6 +7,8 @@ class NeuralNetwork:
 
     def __init__(self, args):
 
+        self.lr = getattr(args, "learning_rate", 0.01)
+
         activation = getattr(args, "activation", "relu")
 
         # Case 1: grader provides hidden_size list
@@ -72,7 +74,7 @@ class NeuralNetwork:
             delta = layer.backward(delta)
 
             grad_W_list.append(layer.grad_W)
-            grad_b_list.append(layer.grad_b.reshape(1,-1))
+            grad_b_list.append(layer.grad_b)
 
         # convert to object arrays (autograder requirement)
         self.grad_W = np.empty(len(grad_W_list), dtype=object)
