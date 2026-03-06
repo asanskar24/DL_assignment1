@@ -5,23 +5,30 @@ from .activations import Activation
 
 class NeuralNetwork:
 
-    def __init__(self, cli_args):
+    def __init__(self, args):
 
-        self.activation = cli_args.activation
-        self.num_layers = cli_args.hidden_layers
-        self.hidden_size = cli_args.num_neurons
-        self.lr = getattr(cli_args, "learning_rate", 0.001)
+        if hasattr(args, "num_layers"):
+            hidden_layers = args.num_layers
+        else:
+            hidden_layers = getattr(args, "hidden_layers", 1)
 
-        layer_sizes = [784] + [self.hidden_size] * self.num_layers + [10]
+        if hasattr(args, "hidden_size"):
+            num_neurons = args.hidden_size
+        else:
+            num_neurons = getattr(args, "num_neurons", 128)
+
+        activation = getattr(args, "activation", "relu")
+
+        layer_sizes = [784] + [num_neurons] * hidden_layers + [10]
 
         self.layers = []
 
-        for i in range(len(layer_sizes) - 1):
+        for i in range(len(layer_sizes)-1):
 
-            act = self.activation if i < len(layer_sizes) - 2 else "linear"
+            act = activation if i < len(layer_sizes)-2 else "linear"
 
             self.layers.append(
-                Layer(layer_sizes[i], layer_sizes[i + 1], act)
+                Layer(layer_sizes[i], layer_sizes[i+1], act)
             )
 
     # -----------------------------
