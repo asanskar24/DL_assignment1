@@ -9,16 +9,7 @@ class NeuralNetwork:
 
         activation = getattr(args, "activation", "relu")
 
-        # Case 1: hidden_size provided as list
-        if hasattr(args, "hidden_size") and isinstance(args.hidden_size, list):
-            hidden_sizes = args.hidden_size
-
-        # Case 2: hidden_size single value with num_layers
-        else:
-            num_layers = getattr(args, "num_layers", getattr(args, "hidden_layers", 1))
-            hidden_size = getattr(args, "hidden_size", getattr(args, "num_neurons", 128))
-
-            hidden_sizes = [hidden_size] * num_layers
+        hidden_sizes = args.hidden_size
 
         layer_sizes = [784] + hidden_sizes + [10]
 

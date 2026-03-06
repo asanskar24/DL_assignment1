@@ -15,37 +15,114 @@ from ann.optimizers import get_optimizer
 
 
 def parse_arguments():
+        """
+        Parse command-line arguments for training.
+        Compatible with autograder CLI.
+        """
 
-    parser = argparse.ArgumentParser(description="Train neural network")
+        parser = argparse.ArgumentParser(description="Train a neural network")
 
-    parser.add_argument("-d","--dataset", default="mnist",
-                        choices=["mnist","fashion_mnist"])
+        # dataset
+        parser.add_argument(
+            "--dataset",
+            type=str,
+            default="mnist",
+            choices=["mnist", "fashion_mnist"]
+        )
 
-    parser.add_argument("-e","--epochs", type=int, default=10)
+        # training params
+        parser.add_argument(
+            "--epochs",
+            type=int,
+            default=10
+        )
 
-    parser.add_argument("-b","--batch_size", type=int, default=64)
+        parser.add_argument(
+            "--batch_size",
+            type=int,
+            default=64
+        )
 
-    parser.add_argument("-lr","--learning_rate", type=float, default=0.001)
+        parser.add_argument(
+            "--learning_rate",
+            type=float,
+            default=0.001
+        )
 
-    parser.add_argument("-o","--optimizer", default="sgd",
-                        choices=["sgd","momentum","nag","rmsprop","adam","nadam"])
+        parser.add_argument(
+            "--weight_decay",
+            type=float,
+            default=0.0
+        )
 
-    parser.add_argument("-nhl","--hidden_layers", type=int, default=1)
+        # optimizer
+        parser.add_argument(
+            "--optimizer",
+            type=str,
+            default="sgd",
+            choices=["sgd", "momentum", "nag", "rmsprop", "adam", "nadam"]
+        )
 
-    parser.add_argument("-sz","--num_neurons", type=int, default=128)
+        # architecture
+        parser.add_argument(
+            "--num_layers",
+            type=int,
+            default=1,
+            help="Number of hidden layers"
+        )
 
-    parser.add_argument("-a","--activation", default="relu",
-                        choices=["relu","sigmoid","tanh"])
+        parser.add_argument(
+            "--hidden_size",
+            type=int,
+            nargs="+",
+            default=[128],
+            help="Hidden layer sizes (list)"
+        )
 
-    parser.add_argument("-l","--loss", default="cross_entropy")
+        parser.add_argument(
+            "--activation",
+            type=str,
+            default="relu",
+            choices=["relu", "sigmoid", "tanh"]
+        )
 
-    parser.add_argument("-wi","--weight_init", default="xavier")
+        # loss
+        parser.add_argument(
+            "--loss",
+            type=str,
+            default="cross_entropy",
+            choices=["cross_entropy", "mse"]
+        )
 
-    parser.add_argument("-wp","--wandb_project", default="da6401_assignment")
+        # weight initialization
+        parser.add_argument(
+            "--weight_init",
+            type=str,
+            default="xavier",
+            choices=["random", "xavier"]
+        )
 
-    parser.add_argument("--model_save_path", default="best_model.npy")
+        # wandb
+        parser.add_argument(
+            "--wandb_project",
+            type=str,
+            default="da6401_assignment"
+        )
 
-    return parser.parse_args()
+        # model save path
+        parser.add_argument(
+            "--model_save_path",
+            type=str,
+            default="best_model.npy"
+        )
+
+        args = parser.parse_args()
+
+        # Ensure hidden_size matches num_layers if single value given
+        if len(args.hidden_size) == 1 and args.num_layers > 1:
+            args.hidden_size = args.hidden_size * args.num_layers
+
+        return args
 
 
 # -----------------------------

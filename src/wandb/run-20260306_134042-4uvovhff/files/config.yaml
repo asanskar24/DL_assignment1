@@ -1,0 +1,83 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            nt0fuh2parfhuf9z88k952dg95jueqwb:
+                codePath: src\train.py
+                codePathLocal: train.py
+                cpu_count: 4
+                cpu_count_logical: 8
+                cudaVersion: "11.3"
+                disk:
+                    /:
+                        total: "382097944576"
+                        used: "323679514624"
+                email: da25s019@smail.iitm.ac.in
+                executable: C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\venv\Scripts\python.exe
+                git:
+                    commit: 7ab55c0de1e26aa3bb4c7d1ae7e2973191c75e83
+                    remote: https://github.com/asanskar24/DL_assignment1.git
+                gpu: NVIDIA GeForce GTX 1650 with Max-Q Design
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Turing
+                      name: NVIDIA GeForce GTX 1650 with Max-Q Design
+                      uuid: GPU-e9e55b57-df1b-9740-2cf3-522fbcb0fac9
+                host: MSI
+                memory:
+                    total: "8426479616"
+                os: Windows-11-10.0.26200-SP0
+                program: C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src\train.py
+                python: CPython 3.13.9
+                root: C:\Users\asans\Desktop\IIT Madras DOC\Study\DL\Assignment1\da6401_assignment_1\src
+                startedAt: "2026-03-06T08:10:42.710654Z"
+                writerId: nt0fuh2parfhuf9z88k952dg95jueqwb
+        m: []
+        python_version: 3.13.9
+        t:
+            "1":
+                - 2
+                - 3
+                - 5
+                - 53
+            "2":
+                - 2
+                - 3
+                - 5
+                - 53
+            "3":
+                - 2
+                - 16
+            "4": 3.13.9
+            "5": 0.25.0
+            "8":
+                - 3
+            "12": 0.25.0
+            "13": windows-amd64
+activation:
+    value: relu
+batch_size:
+    value: 64
+dataset:
+    value: mnist
+epochs:
+    value: 10
+hidden_size:
+    value:
+        - 128
+learning_rate:
+    value: 0.001
+loss:
+    value: cross_entropy
+model_save_path:
+    value: best_model.npy
+num_layers:
+    value: 1
+optimizer:
+    value: sgd
+wandb_project:
+    value: da6401_assignment
+weight_decay:
+    value: 0
+weight_init:
+    value: xavier
