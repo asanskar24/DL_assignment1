@@ -9,10 +9,23 @@ class NeuralNetwork:
 
         activation = getattr(args, "activation", "relu")
 
-        hidden_layers = getattr(args, "hidden_layers", 1)
-        num_neurons = getattr(args, "num_neurons", 128)
+        # Case 1: grader provides hidden_size list
+        if hasattr(args, "hidden_size"):
 
-        layer_sizes = [784] + [num_neurons] * hidden_layers + [10]
+            if isinstance(args.hidden_size, list):
+                hidden_sizes = args.hidden_size
+            else:
+                hidden_sizes = [args.hidden_size] * getattr(args, "num_layers", 1)
+
+        # Case 2: parser provides hidden_layers + num_neurons
+        else:
+
+            hidden_layers = getattr(args, "hidden_layers", 1)
+            num_neurons = getattr(args, "num_neurons", 128)
+
+            hidden_sizes = [num_neurons] * hidden_layers
+
+        layer_sizes = [784] + hidden_sizes + [10]
 
         self.layers = []
 
