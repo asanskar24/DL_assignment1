@@ -1,137 +1,148 @@
 import numpy as np
-import argparse
 from .neural_layer import Layer
-from .objective_functions import Loss
+from .activations import Activation
 
 
 class NeuralNetwork:
-    """
-    Multi-layer perceptron neural network.
-    """
 
-    def __init__(self, layer_sizes, activation='relu', weight_init='xavier', loss='cross_entropy'):
+    def __init__(self, cli_args):
 
-        # Handle argparse Namespace
-        if isinstance(layer_sizes, argparse.Namespace):
-            args = layer_sizes
-            num_layers = getattr(args, "num_layers", 1)
-            hidden_size = getattr(args, "hidden_size", 128)
+        self.activation = cli_args.activation
+        self.num_layers = cli_args.hidden_layers
+        self.hidden_size = cli_args.num_neurons
+        self.lr = getattr(cli_args, "learning_rate", 0.001)
 
-            activation = getattr(args, "activation", activation)
-            weight_init = getattr(args, "weight_init", weight_init)
-            loss = getattr(args, "loss", loss)
+        layer_sizes = [784] + [self.hidden_size] * self.num_layers + [10]
 
-            layer_sizes = [784] + [hidden_size] * num_layers + [10]
-
-        self.loss_type = loss
         self.layers = []
 
-        # Build layers
         for i in range(len(layer_sizes) - 1):
-            act = activation if i < len(layer_sizes) - 2 else "linear"
+
+            act = self.activation if i < len(layer_sizes) - 2 else "linear"
+
             self.layers.append(
-                Layer(layer_sizes[i], layer_sizes[i + 1], act, weight_init)
+                Layer(layer_sizes[i], layer_sizes[i + 1], act)
             )
 
-        self.logits = None
-
-    # -------------------------
-    # Utility functions
-    # -------------------------
-
-    def softmax(self, Z):
-        """Numerically stable softmax."""
-        Z_shift = Z - np.max(Z, axis=1, keepdims=True)
-        exp_Z = np.exp(Z_shift)
-        return exp_Z / np.sum(exp_Z, axis=1, keepdims=True)
-
-    # -------------------------
+    # -----------------------------
     # Forward Pass
-    # -------------------------
+    # -----------------------------
 
     def forward(self, X):
-        """
-        Forward pass through the network.
-        Returns logits (no softmax applied).
-        """
+
         out = X
 
         for layer in self.layers:
             out = layer.forward(out)
 
-        self.logits = out
-        return out
+        return out  # logits
 
-    # -------------------------
-    # Loss
-    # -------------------------
+    # -----------------------------
+    # Backward Pass
+    # -----------------------------
 
-    def compute_loss(self, logits, y_onehot):
-        probs = self.softmax(logits)
-        return Loss.compute(probs, y_onehot, self.loss_type)
+    def backward(self, y_true, logits):
 
-    # -------------------------
-    # Backpropagation
-    # -------------------------
+        batch_size = y_true.shape[0]
 
-    def backward(self, logits, y_onehot):
+        exp_logits = np.exp(logits - np.max(logits, axis=1, keepdims=True))
+        probs = exp_logits / np.sum(exp_logits, axis=1, keepdims=True)
 
-        probs = self.softmax(logits)
+        delta = (probs - y_true) / batch_size
 
-        delta = (probs - y_onehot) / y_onehot.shape[0]
+        grad_W_list = []
+        grad_b_list = []
 
         for layer in reversed(self.layers):
+
             delta = layer.backward(delta)
 
-    # -------------------------
-    # Prediction
-    # -------------------------
+            grad_W_list.append(layer.grad_W)
+            grad_b_list.append(layer.grad_b)
 
-    def predict(self, X):
+        self.grad_W = np.empty(len(grad_W_list), dtype=object)
+        self.grad_b = np.empty(len(grad_b_list), dtype=object)
+
+        for i, (gw, gb) in enumerate(zip(grad_W_list, grad_b_list)):
+            self.grad_W[i] = gw
+            self.grad_b[i] = gb
+
+        return self.grad_W, self.grad_b
+
+    # -----------------------------
+    # Weight Update
+    # -----------------------------
+
+    def update_weights(self):
+
+        for layer in self.layers:
+
+            layer.W -= self.lr * layer.grad_W
+            layer.b -= self.lr * layer.grad_b
+
+    # -----------------------------
+    # Training Loop
+    # -----------------------------
+
+    def train(self, X_train, y_train, epochs=1, batch_size=32):
+
+        n = X_train.shape[0]
+
+        for epoch in range(epochs):
+
+            perm = np.random.permutation(n)
+
+            X_train = X_train[perm]
+            y_train = y_train[perm]
+
+            for i in range(0, n, batch_size):
+
+                Xb = X_train[i:i + batch_size]
+                yb = y_train[i:i + batch_size]
+
+                logits = self.forward(Xb)
+
+                self.backward(yb, logits)
+
+                self.update_weights()
+
+    # -----------------------------
+    # Evaluation
+    # -----------------------------
+
+    def evaluate(self, X, y):
 
         logits = self.forward(X)
-        probs = self.softmax(logits)
 
-        return np.argmax(probs, axis=1)
+        preds = np.argmax(logits, axis=1)
 
-    # -------------------------
-    # Weight Utilities
-    # -------------------------
+        acc = np.mean(preds == y)
+
+        return acc
+
+    # -----------------------------
+    # Weight Utilities (provided)
+    # -----------------------------
 
     def get_weights(self):
 
-        weights = {"W": [], "b": []}
+        d = {}
 
-        for layer in self.layers:
-            weights["W"].append(layer.W)
-            weights["b"].append(layer.b)
+        for i, layer in enumerate(self.layers):
+            d[f"W{i}"] = layer.W.copy()
+            d[f"b{i}"] = layer.b.copy()
 
-        return weights
+        return d
 
-    def set_weights(self, weights):
-  
-        if isinstance(weights, np.ndarray):
-            weights = weights.tolist()
+    def set_weights(self, weight_dict):
 
-        # Format 1: {"W":[...], "b":[...]}
-        if isinstance(weights, dict) and "W" in weights:
-            for i, layer in enumerate(self.layers):
-                layer.W = weights["W"][i]
-                layer.b = weights["b"][i]
+        for i, layer in enumerate(self.layers):
 
-        # Format 2: [(W,b), (W,b)]
-        elif isinstance(weights, list):
-            for i, layer in enumerate(self.layers):
+            w_key = f"W{i}"
+            b_key = f"b{i}"
 
-                w = weights[i]
+            if w_key in weight_dict:
+                layer.W = weight_dict[w_key].copy()
 
-                if isinstance(w, tuple):
-                    layer.W = w[0]
-                    layer.b = w[1]
-
-                elif isinstance(w, dict):
-                    layer.W = w["W"]
-                    layer.b = w["b"]
-
-                else:
-                    raise ValueError("Unknown weight format")
+            if b_key in weight_dict:
+                layer.b = weight_dict[b_key].copy()
