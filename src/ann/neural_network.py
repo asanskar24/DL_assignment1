@@ -7,25 +7,26 @@ class NeuralNetwork:
 
     def __init__(self, args):
 
-        if hasattr(args, "num_layers"):
-            hidden_layers = args.num_layers
-        else:
-            hidden_layers = getattr(args, "hidden_layers", 1)
-
-        if hasattr(args, "hidden_size"):
-            num_neurons = args.hidden_size
-        else:
-            num_neurons = getattr(args, "num_neurons", 128)
-
         activation = getattr(args, "activation", "relu")
 
-        layer_sizes = [784] + [num_neurons] * hidden_layers + [10]
+        # Case 1: hidden_size provided as list
+        if hasattr(args, "hidden_size") and isinstance(args.hidden_size, list):
+            hidden_sizes = args.hidden_size
+
+        # Case 2: hidden_size single value with num_layers
+        else:
+            num_layers = getattr(args, "num_layers", getattr(args, "hidden_layers", 1))
+            hidden_size = getattr(args, "hidden_size", getattr(args, "num_neurons", 128))
+
+            hidden_sizes = [hidden_size] * num_layers
+
+        layer_sizes = [784] + hidden_sizes + [10]
 
         self.layers = []
 
-        for i in range(len(layer_sizes)-1):
+        for i in range(len(layer_sizes) - 1):
 
-            act = activation if i < len(layer_sizes)-2 else "linear"
+            act = activation if i < len(layer_sizes) - 2 else "linear"
 
             self.layers.append(
                 Layer(layer_sizes[i], layer_sizes[i+1], act)
