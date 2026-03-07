@@ -13,10 +13,9 @@ This assignment requires you to implement a neural network from scratch using on
 - Train and evaluate neural networks
 - Log experiments using Weights & Biases
 
-## Contact
+## W&B report
+- https://wandb.ai/da25s019-iitm-india/da6401-assignment1/reports/Assignment-1-W-B-Report--VmlldzoxNjAzMDI4NA?accessToken=j9uf8ea2m1w9vqmajjts1c7q6nj6o0gwpegk4z1dki6wtxd5m6zb7iphz4s0p7h2
 
-For questions or issues, please contact the teaching staff or post on the course forum.
-
+## github link
+- https://github.com/asanskar24/DL_assignment1
 ---
-
-Good luck with your implementation!
